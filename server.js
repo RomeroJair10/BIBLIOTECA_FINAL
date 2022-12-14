@@ -1,6 +1,7 @@
 const express = require('express')
 const librosRouter = require('./routes/Biblioteca')
 const clienteRouter = require('./routes/Clientes')
+const prestamoRouter = require('./routes/Prestamo')
 const cors = require('cors')
 
 class Server {
@@ -10,7 +11,9 @@ class Server {
 
         this.paths = {
             libros: "/api/v1/libros",
-            cliente: "/api/v1/cliente"
+            cliente: "/api/v1/cliente",
+            prestamo: "/api/v1/prestamo"
+
         }
         this.middlewares()
         this.routes()
@@ -22,6 +25,7 @@ class Server {
 
        this.app.use(this.paths.libros, librosRouter)
        this.app.use(this.paths.cliente, clienteRouter)
+       this.app.use(this.paths.prestamo, prestamoRouter)
  }
     middlewares(){
         this.app.use(cors())// habilita origen curzado
